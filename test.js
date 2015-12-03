@@ -1,27 +1,22 @@
 import test from 'ava';
 import 'babel-core/register';
-import foo, {bar, baz} from './index';
+import resolvePath from './index';
 
-test('foo', t => {
-	t.is(typeof foo, 'object');
+test('should resolve relative path', t => {
+	t.same(resolvePath('x.y', 'a/b'), 'a/x.y');
 });
 
-test('.bar', t => {
-	t.same(bar, 3);
+test('should resolve relative depth path', t => {
+	t.same(resolvePath('x.y', 'a/b/c'), 'a/b/x.y');
+	t.same(resolvePath('d/x.y', 'a/b/c'), 'a/b/d/x.y');
 });
 
-test.cb('.baz()', t => {
-	baz()
-		.then(() => {
-			t.pass();
-			t.end();
-		})
-		.catch(() => {
-			t.fail();
-			t.end();
-		});
+test('should resolve ./ path', t => {
+	t.same(resolvePath('./x.y', 'a/b'), 'a/x.y');
+	t.same(resolvePath('./d/x.y', 'a/b/c'), 'a/b/d/x.y');
 });
 
-test('._qux', t => {
-	t.is(foo._qux(), 'qux');
+test('should resolve ../ path', t => {
+	t.same(resolvePath('../d/x.y', 'a/b/c'), 'a/d/x.y');
+	t.same(resolvePath('../../d/x.y', 'a/b/c'), 'd/x.y');
 });
