@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "test": "xo && nyc ava",
-    "coveralls": "nyc report --reporter=lcov | coveralls"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Vladimir Rodkin <mail@vovanr.com> (http://vovanr.com/)",
   "license": "MIT",
