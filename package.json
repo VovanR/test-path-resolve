@@ -13,8 +13,8 @@
     "index.js"
   ],
   "scripts": {
-    "test": "xo && ava",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "test": "xo && nyc ava",
+    "coveralls": "nyc --reporter=lcov | coveralls"
   },
   "author": "Vladimir Rodkin <mail@vovanr.com> (http://vovanr.com/)",
   "license": "MIT",
