@@ -1,5 +1,5 @@
 import test from 'ava';
-import 'babel-core/register';
+import 'babel-register';
 import resolvePath from './index';
 
 test('should resolve relative path', t => {
