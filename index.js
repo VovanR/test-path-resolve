@@ -17,7 +17,7 @@ const resolvePath = (path, base) => {
 	// resolve '../'
 	if (c) {
 		while (c-- > 0) {
-			base = base.replace(/[^\/]+\/$/, '');
+			base = base.replace(/[^/]+\/$/, '');
 		}
 	}
 
