@@ -1,20 +1,26 @@
+/**
+ * @param {string} path
+ * @param {string} base
+ *
+ * @returns {string}
+ */
 const resolvePath = (path, base) => {
-	// remove filename
+	// Remove filename
 	base = base.match(/.*\//)[0];
 
-	// remove '../' and count it
+	// Remove '../' and count it
 	let c = 0;
 	path = path.replace(/\.\.\//g, () => {
 		c += 1;
 		return '';
 	});
 
-	// remove './'
+	// Remove './'
 	if (/\.\//.test(path)) {
 		path = path.split('./')[1];
 	}
 
-	// resolve '../'
+	// Resolve '../'
 	if (c) {
 		while (c-- > 0) {
 			base = base.replace(/[^/]+\/$/, '');
